@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "target": "esnext",
-    "module": "NodeNext",
+    "module": "es6",
     "outDir": "../../build/main",
     "rootDir": "./",
+    "isolatedModules": false,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

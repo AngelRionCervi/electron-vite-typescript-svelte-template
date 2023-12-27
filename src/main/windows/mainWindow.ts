@@ -6,7 +6,7 @@ export default function createMainWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(path.resolve(), 'src/main/preload/preload.js'),
+      preload: path.join(process.cwd(), 'build/main/preload/preload.js'),
     },
   })
 
