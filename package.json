@@ -3,17 +3,32 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "build/main.js",
+  "main": "build/main/main.js",
+  "build": {
+    "directories": {
+      "buildResources": "build",
+      "app": "build"
+    }
+  },
   "scripts": {
-    "start": "electron .",
+    "start": "electron-forge start",
     "dev:electron": "concurrently \"tsc -w --project ./src/main/tsconfig.json\" \"cross-env NODE_ENV=dev  electron .\"",
     "dev:vite": "vite",
     "dev:all": "concurrently -n=svelte,electron -c=yellow,blue \"npm run dev:vite\" \"npm run dev:electron\"",
-    "build": "vite build",
+    "build:vite": "vite build",
+    "build:electron": "tsc --project ./src/main/tsconfig.json",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "package": "electron-forge package",
+    "make": "npm run build:electron && electron-forge make"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@tsconfig/svelte": "^5.0.2",
     "electron": "^28.1.0",
@@ -25,6 +40,8 @@
   },
   "dependencies": {
     "concurrently": "^8.2.2",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "electron-squirrel-startup": "^1.0.0"
   }
 }

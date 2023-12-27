@@ -11,9 +11,8 @@ export default function createMainWindow() {
   })
 
   if (process.env.NODE_ENV === 'dev') {
-    console.log('Launching in DEV mode')
-    win.loadURL('http://localhost:8712/')
+    win.loadURL(`http://localhost:${process.env.VITE_PORT || 8712}`)
   } else {
-    win.loadFile(path.join(path.resolve(), 'src/renderer/index.html'))
+    win.loadFile('build/renderer/index.html')
   }
 }
