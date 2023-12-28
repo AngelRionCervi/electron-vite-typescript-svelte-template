@@ -18,7 +18,9 @@
     "build:vite": "vite build",
     "build:electron": "tsc --project ./src/main/tsconfig.json && tsc-alias -p ./src/main/tsconfig.json",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./src/renderer/tsconfig.json",
+    "check:vite": "svelte-check --tsconfig ./src/renderer/tsconfig.json",
+    "check:electron": "tsc --noEmit --project ./src/main/tsconfig.json",
+    "check:all": "npm run check:vite && npm run check:electron",
     "package": "electron-forge package",
     "make": "npm run build:electron && npm run build:vite && electron-forge make"
   },
