@@ -1,10 +1,10 @@
 import createMainWindow from './windows/mainWindow.js'
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, globalShortcut } from 'electron'
 import dotenv from 'dotenv'
+import { spawn } from 'child_process'
+import { isDev } from '@/tools/helpers.js'
 
 dotenv.config()
-
-// might want to have a key bind to restart the app when changes are made ! (no hot reloading for electron)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
@@ -16,6 +16,17 @@ if (process.env.NODE_ENV === 'dev') {
 
 app.whenReady().then(() => {
   createMainWindow()
+
+  if (isDev()) {
+    globalShortcut.register('CommandOrControl+R', () => {
+      app.exit()
+      spawn(process.argv.shift() || '', process.argv, {
+        cwd: process.cwd(),
+        detached: true,
+        stdio: 'inherit',
+      })
+    })
+  }
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
