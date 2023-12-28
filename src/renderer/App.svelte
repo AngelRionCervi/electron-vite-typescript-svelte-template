@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <h1>Vite + Svelte + TS</h1>
+  <h1>Electron + Svelte + TS + Vite</h1>
   <div class="card">
     <Counter />
   </div>
