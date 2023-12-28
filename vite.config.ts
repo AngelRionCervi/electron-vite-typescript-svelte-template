@@ -1,14 +1,12 @@
 import { defineConfig, loadEnv } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import path from 'path'
+import svg from '@poppanator/sveltekit-svg'
 
-const env = loadEnv(
-  'all',
-  process.cwd()
-);
+const env = loadEnv('all', process.cwd())
 
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [svelte(), svg()],
   resolve: {
     alias: {
       '@': path.resolve('src/renderer'),
@@ -20,6 +18,6 @@ export default defineConfig({
     port: parseInt(env.VITE_PORT || '8712'),
   },
   build: {
-    outDir: '../../build/renderer'
-  }
+    outDir: '../../build/renderer',
+  },
 })
