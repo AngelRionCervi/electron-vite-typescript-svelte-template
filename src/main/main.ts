@@ -6,10 +6,6 @@ import { isDev } from '@/tools/helpers.js'
 
 dotenv.config()
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
-})
-
 if (process.env.NODE_ENV === 'dev') {
   console.log('Launching in DEV mode')
 }
@@ -22,7 +18,7 @@ app.whenReady().then(() => {
       app.exit()
       spawn(process.argv.shift() || '', process.argv, {
         cwd: process.cwd(),
-        detached: true,
+        detached: process.platform !== 'darwin',
         stdio: 'inherit',
       })
     })
@@ -33,4 +29,8 @@ app.whenReady().then(() => {
       createMainWindow()
     }
   })
+})
+
+app.on('window-all-closed', () => {
+  app.quit()
 })
