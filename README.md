@@ -10,6 +10,7 @@ It uses good old tsc to transpile the main process ts files into js and Vite for
 - no complicated webpack config
 
 `npm run dev:all` to start the app
+
 `Command / Control + R` to restart the app
 
 Tested on Windows and Mac.
